@@ -74,7 +74,7 @@ class LoginView(APIView):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = []
 
     def get_queryset(self):
         if getattr(self, 'swagger_fake_view', False):
@@ -93,9 +93,6 @@ class UserViewSet(viewsets.ModelViewSet):
                 return User.objects.filter(location__company=self.request.user.location.company)
         
         return User.objects.none() 
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         if getattr(self, 'swagger_fake_view', False):
